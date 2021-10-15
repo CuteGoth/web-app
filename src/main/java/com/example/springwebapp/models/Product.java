@@ -1,4 +1,4 @@
-package com.example.springwebapp.model;
+package com.example.springwebapp.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,10 +32,12 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-//    множеству продуктов соответствует одна категория
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    множеству продуктов могут соответствовать множество категорий
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "product_category", schema = "coffeshop",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
 
     @ManyToMany(fetch = FetchType.LAZY)
