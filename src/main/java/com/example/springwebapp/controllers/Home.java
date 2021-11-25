@@ -1,25 +1,24 @@
 package com.example.springwebapp.controllers;
-
+import com.example.springwebapp.services.CityService;
 import com.example.springwebapp.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-
-/**
- * Created by Denis on 2/20/2016.
- */
 
 @Controller
 public class Home {
 
     private final ProductService productService;
 
-    public Home(ProductService productService) {
-        this.productService = productService;
-    }
+    private final CityService cityService;
 
+    public Home(ProductService productService, CityService cityService) {
+        this.productService = productService;
+        this.cityService = cityService;
+    }
 
     @RequestMapping("/")
     public String home() {
@@ -30,7 +29,15 @@ public class Home {
     public String homeWithSession(Model model, HttpSession session) {
         String sid = session.getId();
         model.addAttribute("sid", sid);
-        model.addAttribute("products", productService.getBySortHighToLow());
+        model.addAttribute("products", productService.getAll());
+        model.addAttribute("cities", cityService.getAll());
         return "index";
     }
+
+
+    @GetMapping("/cart")
+    public String cartEnter() {
+        return "cart";
+    }
+
 }
