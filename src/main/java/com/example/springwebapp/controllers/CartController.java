@@ -14,21 +14,4 @@ import java.util.List;
 @Controller
 public class CartController {
 
-//    @RequestMapping
-//    public String cart() {
-//        return "cart";
-//    }
-
-
-//    @RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
-//    public String toCart(@PathVariable("id") long id, ModelMap modelMap, HttpSession session) {
-//        if(session.getAttribute("cart") == null) {
-//            List<Item> cart = new ArrayList<>();
-//            cart.add(new Item(productService.find(id), 1));
-//            session.setAttribute("cart", cart);
-//        }
-//        else {
-//
-//        }
-//    }
 }

@@ -16,14 +16,15 @@ $(function () {
             if($.cookie('currentLocation') == null)
                 $('#myModal').modal('show');
     });
+
     $('#priceToHigh').on('click', function () {
         $.get("/sortPrice/asc", function (data, status) {
-            $('#productsContainer').html(data);
+            $('#productsContainer').replaceWith(data);
         })
     });
     $('#priceToLow').on('click', function () {
         $.get("/sortPrice/desc", function (data, status) {
-            $('#productsContainer').html(data);
+            $('#productsContainer').replaceWith(data);
         })
     });
 
@@ -33,14 +34,18 @@ $(function () {
             return $(val).prop("id");
         });
         $.get("/filter?categ=" + categ.join(), function (data, status) {
-            $('#productsContainer').html(data);
+            $('#productsContainer').replaceWith(data);
         })
     });
 
-    $('#addToCart').on('click', function () {
-        $.post("/cartCount", {id: 1}, function (data) {
+    $('.addToCart').on('click', function () {
+        let id = $(this).data('id');
+        $.post("/addToCart?id=" + id, {
+            dataType: 'json',
+            data: '{"id": "' + id + '"}',
+        }, function (data) {
         }).done(function (data) {
-            $('#cartCount').text(data.length);
+            $('#cartCount').html(data);
         }).fail(function () {
             alert('falled')
         })

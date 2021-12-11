@@ -41,7 +41,6 @@ public class SortController {
             System.out.println(string);
         }
         model.addAttribute("products", productService.getByCategory(categories));
-
         return "index :: #productsContainer";
     }
 }
