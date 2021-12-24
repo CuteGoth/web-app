@@ -1,16 +1,3 @@
-// $(function () {
-//     $('#myButton').on('click', function () {
-//         // http request
-//         $.post("/cart", {id:1}, function (data){
-//
-//         }).done(function (data) {
-//             $('#cart').text('Total: ' + data.length);
-//         }).fail(function () {
-//             alert('falled')
-//         });
-//     });
-// });
-
 $(function () {
         $(window).on('load', function () {
             if($.cookie('currentLocation') == null)
@@ -54,7 +41,6 @@ $(function () {
     $(".dropdown-menu li a").click(function() {
         $("#cityName").text($(this).text());
     });
-
 
     $('#saveCity').click(function () {
         let city = $("#cityName").html();

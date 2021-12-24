@@ -14,5 +14,4 @@ import java.util.Optional;
 public class Item {
     private Product product;
     private int count;
-
 }

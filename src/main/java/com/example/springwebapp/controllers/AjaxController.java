@@ -4,7 +4,6 @@ package com.example.springwebapp.controllers;
 import com.example.springwebapp.models.Item;
 import com.example.springwebapp.services.ProductService;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class AjaxController {
         else {
             List<Item> cartList = (List<Item>) session.getAttribute("cart");
             int index = isExists(id, cartList);
-            if(index == -1) {
+            if (index == -1) {
                 cartList.add(new Item(productService.find(id), 1));
                 count++;
             }
@@ -54,5 +53,4 @@ public class AjaxController {
         }
         return -1;
     }
-
 }

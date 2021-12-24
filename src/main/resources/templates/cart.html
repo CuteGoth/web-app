@@ -58,24 +58,16 @@
         </div>
     </div>
 </div>
-
-<!--    <section class="py-4 text-center container">-->
-<!--        <h2 th:text="${sid}"></h2>-->
-<!--        <button id="myButton" class="btn btn-dark w-25">Add</button>-->
-<!--        <span id="cart">No items</span>-->
-<!--    </section>-->
 <main>
     <div class="container"  id="cartItems">
         <div class="row">
             <div class="col">
-                <div th:each="product : ${products}" class="card" style="width: 15rem; float: left; height: 35rem; margin: 10px">
+                <div th:each="item : ${session.cart}" class="card" style="width: 15rem; float: left; height: 35rem; margin: 10px">
                     <div class="card-body">
-                        <img th:src="@{${product.image}}" class="card-img-top">
-                        <h4 th:text="${product.description}" class="card-title">description</h4>
-                        <p th:text="${product.price} + ' руб.'" class="card-text">price</p>
-                        <p th:text="${product.date}" class="card-text">price</p>
+                        <h4 th:text="${item.product.description}" class="card-title">name</h4>
+                        <p th:text="${item.product.price} + ' руб.'" class="card-text">price</p>
                         <div class="card-footer bg-transparent">
-                            <a th:href="${'/toCart/buy/' + product.id}" class="btn btn-light" style="background-color: darksalmon">To cart</a></div>
+                            <a class="btn btn-light" style="background-color: darksalmon">В заказ</a></div>
                     </div>
                 </div>
             </div>
